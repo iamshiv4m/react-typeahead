@@ -4,6 +4,7 @@ node_modules/
 # Build
 dist/
 .parcel-cache
+.cache/
 
 # IDE
 .vscode/
