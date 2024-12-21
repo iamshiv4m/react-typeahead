@@ -19,6 +19,16 @@ A highly customizable React Typeahead component with TypeScript support, built w
 npm install react-typeahead-component
 ```
 
+## Running Examples
+
+To run the examples locally:
+
+```bash
+npm run start:examples
+```
+
+This will start a development server using Parcel and open the examples in your browser (typically at http://localhost:1234).
+
 ## Props
 
 | Prop           | Type                                          | Default     | Description                            |
@@ -37,6 +47,8 @@ npm install react-typeahead-component
 MIT © Shivam Jha
 
 ## Examples
+
+Example implementations can be found in the `/examples` directory of this repository.
 
 ### Custom Rendering
 
