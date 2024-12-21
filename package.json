@@ -1,5 +1,5 @@
 {
-  "name": "@iamshiv4m/react-typeahead",
+  "name": "react-typeahead-component",
   "version": "1.0.0",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -9,7 +9,7 @@
     "test": "jest",
     "lint": "eslint src/**/*.{ts,tsx}",
     "prepare": "npm run build",
-    "prepublishOnly": "npm test && npm run lint",
+    "prepublishOnly": "npm run build",
     "start:examples": "parcel examples/index.html",
     "build:examples": "parcel build examples/index.html"
   },
@@ -20,8 +20,12 @@
     "search",
     "typescript"
   ],
-  "author": "",
+  "author": "Shivam Jha",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamshiv4m/react-typeahead.git"
+  },
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
