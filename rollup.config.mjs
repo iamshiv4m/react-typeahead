@@ -17,11 +17,13 @@ export default [
         file: "dist/cjs/index.js",
         format: "cjs",
         sourcemap: true,
+        exports: "named",
       },
       {
         file: "dist/esm/index.js",
         format: "esm",
         sourcemap: true,
+        exports: "named",
       },
     ],
     plugins: [
@@ -33,13 +35,17 @@ export default [
         exclude: ["**/*.test.tsx", "**/*.test.ts"],
       }),
       postcss({
-        modules: true,
-        extract: false,
+        extract: true,
         minimize: true,
-        use: ["sass"],
+        modules: true,
+        namedExports: true,
       }),
     ],
     external: ["react", "react-dom"],
+    treeshake: {
+      moduleSideEffects: false,
+      propertyReadSideEffects: false,
+    },
   },
   {
     input: "src/index.ts",
