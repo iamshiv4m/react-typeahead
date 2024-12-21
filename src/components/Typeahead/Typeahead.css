@@ -1,0 +1,109 @@
+.typeahead-container {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  font-size: 16px;
+}
+
+.typeahead-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.typeahead-input {
+  width: 100%;
+  padding: 8px 32px 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  line-height: 1.5;
+  transition: border-color 0.2s ease;
+}
+
+.typeahead-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.typeahead-spinner {
+  position: absolute;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.typeahead-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.typeahead-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.typeahead-item {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.typeahead-item:hover,
+.typeahead-item.selected {
+  background-color: #f0f0f0;
+}
+
+.typeahead-loading,
+.typeahead-no-results,
+.typeahead-error {
+  padding: 12px;
+  color: #666;
+  text-align: center;
+}
+
+.typeahead-error {
+  color: #dc3545;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Scrollbar styling */
+.typeahead-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.typeahead-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.typeahead-list::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+.typeahead-list::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
