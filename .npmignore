@@ -1,13 +1,23 @@
-src/
-examples/
+# Development files
 tests/
-.github/
-.vscode/
-.idea/
-.git/
-.gitignore
-.eslintrc*
-.prettierrc*
-rollup.config.mjs
+docs/
+examples/
+*.test.js
+*.spec.js
+
+# Source maps
+*.map
+
+# Config files
+.eslintrc
+.prettierrc
 tsconfig.json
-*.log 
+
+# Git related
+.git
+.github
+.gitignore
+
+# Others
+node_modules/
+coverage/

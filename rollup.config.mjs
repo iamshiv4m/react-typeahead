@@ -5,6 +5,8 @@ import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import { createRequire } from "module";
+import { visualizer } from "rollup-plugin-visualizer";
+import terser from "@rollup/plugin-terser";
 
 const require = createRequire(import.meta.url);
 const pkg = require("./package.json");
@@ -47,6 +49,11 @@ export default [
         minimize: true,
         modules: true,
         namedExports: true,
+      }),
+      terser(),
+      visualizer({
+        filename: "bundle-analysis.html",
+        open: true,
       }),
     ],
     external: ["react", "react-dom"],
