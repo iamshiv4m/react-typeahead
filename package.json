@@ -1,6 +1,6 @@
 {
   "name": "react-typeahead-widget",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "module": "dist/index.js",
   "type": "module",
   "scripts": {
@@ -45,6 +45,7 @@
     "rollup-plugin-dts": "^6.1.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-visualizer": "^5.12.0",
     "typescript": "^5.7.2"
   },
   "files": [
