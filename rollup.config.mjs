@@ -16,26 +16,34 @@ export default [
       {
         file: "dist/cjs/index.js",
         format: "cjs",
-        sourcemap: true,
+        sourcemap: false,
         exports: "named",
       },
       {
         file: "dist/esm/index.js",
         format: "esm",
-        sourcemap: true,
+        sourcemap: false,
         exports: "named",
       },
     ],
     plugins: [
       peerDepsExternal(),
-      resolve(),
+      resolve({
+        extensions: [".ts", ".tsx"],
+      }),
       commonjs(),
       typescript({
         tsconfig: "./tsconfig.json",
-        exclude: ["**/*.test.tsx", "**/*.test.ts"],
+        exclude: ["**/*.test.tsx", "**/*.test.ts", "examples/**/*"],
+        tsconfigOverride: {
+          compilerOptions: {
+            declaration: true,
+            sourceMap: false,
+          },
+        },
       }),
       postcss({
-        extract: true,
+        extract: false,
         minimize: true,
         modules: true,
         namedExports: true,
@@ -45,6 +53,7 @@ export default [
     treeshake: {
       moduleSideEffects: false,
       propertyReadSideEffects: false,
+      tryCatchDeoptimization: false,
     },
   },
   {

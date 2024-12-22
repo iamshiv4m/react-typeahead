@@ -2,7 +2,6 @@
   position: relative;
   width: 100%;
   max-width: 300px;
-  font-size: 16px;
 }
 
 .typeahead-input-wrapper {
@@ -11,11 +10,15 @@
   align-items: center;
 }
 
-.typeahead-input {
+.typeahead-input,
+.typeahead-results {
   width: 100%;
-  padding: 8px 32px 8px 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+.typeahead-input {
+  padding: 8px 32px 8px 12px;
   font-size: 16px;
   line-height: 1.5;
   transition: border-color 0.2s ease;

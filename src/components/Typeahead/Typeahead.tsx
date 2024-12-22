@@ -4,10 +4,21 @@ import React, {
   useRef,
   useCallback,
   KeyboardEvent,
+  ChangeEvent,
 } from "react";
 import { useTypeaheadCache } from "./useTypeaheadCache";
-import { TypeaheadProps, TypeaheadItem } from "./types";
 import "./Typeahead.css";
+
+interface TypeaheadProps {
+  onSearch: (query: string) => Promise<any[]>;
+  onSelect: (item: any) => void;
+  renderItem?: (item: any) => React.ReactNode;
+  placeholder?: string;
+  debounceTime?: number;
+  maxResults?: number;
+  minQueryLength?: number;
+  cacheTime?: number;
+}
 
 /**
  * A customizable typeahead/autocomplete component that provides search suggestions as users type.
@@ -41,7 +52,7 @@ export const Typeahead: React.FC<TypeaheadProps> = ({
   cacheTime = 5 * 60 * 1000,
 }) => {
   const [query, setQuery] = useState<string>("");
-  const [results, setResults] = useState<TypeaheadItem[]>([]);
+  const [results, setResults] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selectedIndex, setSelectedIndex] = useState<number>(-1);
@@ -149,7 +160,7 @@ export const Typeahead: React.FC<TypeaheadProps> = ({
    * Handles the selection of an item from the results
    * @param item - The selected TypeaheadItem
    */
-  const handleSelect = (item: TypeaheadItem) => {
+  const handleSelect = (item: any) => {
     onSelect(item);
     setQuery("");
     setIsOpen(false);
@@ -193,6 +204,12 @@ export const Typeahead: React.FC<TypeaheadProps> = ({
     return null;
   };
 
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+    setIsOpen(true);
+    setSelectedIndex(-1);
+  };
+
   return (
     <div className="typeahead-container" ref={componentRef}>
       <div className="typeahead-input-wrapper">
@@ -206,11 +223,7 @@ export const Typeahead: React.FC<TypeaheadProps> = ({
             selectedIndex >= 0 ? `typeahead-item-${selectedIndex}` : undefined
           }
           value={query}
-          onChange={(e) => {
-            setQuery(e.target.value);
-            setIsOpen(true);
-            setSelectedIndex(-1);
-          }}
+          onChange={handleChange}
           onKeyDown={handleKeyDown}
           onFocus={() => setIsOpen(true)}
           placeholder={placeholder}
