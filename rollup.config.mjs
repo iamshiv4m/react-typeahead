@@ -7,6 +7,8 @@ import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import { createRequire } from "module";
 import { visualizer } from "rollup-plugin-visualizer";
 import terser from "@rollup/plugin-terser";
+import cssnano from "cssnano";
+import gzip from "rollup-plugin-gzip";
 
 const require = createRequire(import.meta.url);
 const pkg = require("./package.json");
@@ -49,19 +51,46 @@ export default [
         minimize: true,
         modules: true,
         namedExports: true,
+        plugins: [
+          cssnano({
+            preset: [
+              "default",
+              {
+                discardComments: { removeAll: true },
+                normalizeWhitespace: true,
+                minifyFontValues: true,
+              },
+            ],
+          }),
+        ],
       }),
-      terser(),
+      terser({
+        compress: {
+          pure_funcs: ["console.log", "console.info", "console.debug"],
+          drop_debugger: true,
+          passes: 2,
+        },
+      }),
       visualizer({
         filename: "bundle-analysis.html",
+        gzipSize: true,
+        brotliSize: true,
+        sourcemap: true,
         open: true,
+      }),
+      {
+        treeshake: {
+          moduleSideEffects: false,
+          propertyReadSideEffects: false,
+          tryCatchDeoptimization: false,
+        },
+      },
+      gzip({
+        filter: /\.(js|css|html|json|ico|svg)$/,
+        minSize: 1024,
       }),
     ],
     external: ["react", "react-dom"],
-    treeshake: {
-      moduleSideEffects: false,
-      propertyReadSideEffects: false,
-      tryCatchDeoptimization: false,
-    },
   },
   {
     input: "src/index.ts",

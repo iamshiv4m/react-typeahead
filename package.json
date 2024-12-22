@@ -33,11 +33,14 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^28.0.2",
     "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.1.2",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
     "@typescript-eslint/eslint-plugin": "^8.18.1",
     "@typescript-eslint/parser": "^8.18.1",
+    "compression": "^1.7.5",
+    "cssnano": "^6.0.1",
     "eslint": "^9.17.0",
     "parcel": "^2.13.3",
     "process": "^0.11.10",
@@ -45,17 +48,35 @@
     "react-dom": "^19.0.0",
     "rollup": "^4.29.1",
     "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-gzip": "^4.0.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-typescript2": "^0.36.0",
-    "@rollup/plugin-terser": "^0.4.4",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.7.2",
     "rollup-plugin-visualizer": "^5.9.2",
-    "cssnano": "^6.0.1"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
   },
   "files": [
     "dist"
   ],
-  "sideEffects": false
+  "sideEffects": false,
+  "size-limit": [
+    {
+      "path": "dist/esm/index.js",
+      "limit": "10 KB"
+    }
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles": "./dist/styles.css"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ]
 }
