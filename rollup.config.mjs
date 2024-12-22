@@ -15,13 +15,7 @@ export default [
     input: "src/index.ts",
     output: [
       {
-        file: "dist/cjs/index.js",
-        format: "cjs",
-        sourcemap: false,
-        exports: "named",
-      },
-      {
-        file: "dist/esm/index.js",
+        file: "dist/index.js",
         format: "esm",
         sourcemap: false,
         exports: "named",

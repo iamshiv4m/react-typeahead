@@ -1,8 +1,7 @@
 {
   "name": "react-typeahead-widget",
-  "version": "1.0.6",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
+  "version": "1.0.7",
+  "module": "dist/index.js",
   "type": "module",
   "scripts": {
     "build": "rollup -c rollup.config.mjs",
@@ -60,8 +59,7 @@
   ],
   "exports": {
     ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js",
+      "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
     "./styles": "./dist/styles.css"
